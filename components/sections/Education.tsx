@@ -38,14 +38,14 @@ const education = [
     tier: "primary" as const,
     title: "Licenciatura en Sistemas de Información",
     institution: "UADER",
-    status: "En curso",
+    status: "60% - En curso",
     icon: GraduationCap,
   },
   {
     tier: "secondary" as const,
     title: "Técnico Analista de Sistemas",
     institution: "UADER",
-    status: null,
+    status: "96%",
     icon: BookOpen,
   },
   {
@@ -97,7 +97,7 @@ export default function Education() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} id="education" className="py-32" aria-label="Education">
+    <section ref={ref} id="education" className="py-16" aria-label="Education">
       <motion.div
         variants={container}
         initial="hidden"

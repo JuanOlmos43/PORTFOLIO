@@ -159,7 +159,7 @@ export default function Contact() {
     <section
       ref={sectionRef}
       id="contact"
-      className="py-32"
+      className="py-16"
       aria-label="Contact"
     >
       <motion.div

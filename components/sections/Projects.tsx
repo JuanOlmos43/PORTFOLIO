@@ -63,19 +63,16 @@ const projects: Project[] = [
     tech: ["React", "Next.js", "Nest.js", "Prisma"],
     image: "/projects/inmobiliaria.png",
     video: "/projects/inmobiliaria.mp4",
-    links: [
-      { label: "GitHub", href: "#", icon: Github },
-      { label: "Demo", href: "#", icon: ExternalLink },
-    ],
+    links: [{ label: "GitHub", href: "#", icon: Github }],
   },
   {
     title: "Generador de Recibos",
     context: "Freelance",
     description:
       "Aplicación de escritorio para generación automatizada de recibos personalizados.",
-    tech: ["C#", "PDF generation"],
-    image: "/projects/recibos.png",
-    links: [{ label: "GitHub", href: "#", icon: Github }],
+    tech: ["C#"],
+    image: "/projects/recibo.png",
+    links: [],
   },
   // Placeholder para un futuro tercer proyecto:
   // {
@@ -201,7 +198,7 @@ export default function Projects() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} id="projects" className="py-32" aria-label="Projects">
+    <section ref={ref} id="projects" className="py-16" aria-label="Projects">
       <motion.div
         variants={container}
         initial="hidden"

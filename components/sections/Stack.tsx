@@ -123,7 +123,7 @@ export default function Stack() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} id="stack" className="py-32" aria-label="Tech Stack">
+    <section ref={ref} id="stack" className="py-16" aria-label="Tech Stack">
       <motion.div
         variants={container}
         initial="hidden"

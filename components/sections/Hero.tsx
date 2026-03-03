@@ -2,7 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
-import { Github, Linkedin, MapPin, ArrowDown } from "lucide-react";
+import { Github, Linkedin, MapPin, ArrowDown, Eye } from "lucide-react";
 
 /* ──────────────────────────────────────────────
    Animation Variants
@@ -28,23 +28,6 @@ const fadeUp: Variants = {
     },
   },
 };
-
-/* ──────────────────────────────────────────────
-   Social Links Data
-   ────────────────────────────────────────────── */
-
-const socialLinks = [
-  {
-    label: "GitHub",
-    href: "https://github.com/JuanOlmos43",
-    icon: Github,
-  },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/juan-emanuel-olmos-69b55a399",
-    icon: Linkedin,
-  },
-] as const;
 
 /* ──────────────────────────────────────────────
    Hero Section
@@ -82,7 +65,7 @@ export default function Hero() {
             Juan Emanuel Olmos
           </h1>
           <p className="text-lg font-light tracking-wide text-zinc-400">
-            Analista de Sistemas en formación
+            Técnico Analista de Sistemas - Licenciatura en Sistemas de Información en formación
           </p>
         </motion.div>
 
@@ -102,31 +85,60 @@ export default function Hero() {
         {/* ── Location ─────────────────────────── */}
         <motion.div
           variants={fadeUp}
-          className="flex items-center gap-1.5 text-zinc-600"
+          className="flex items-center gap-1.5 text-zinc-400"
         >
-          <MapPin size={14} strokeWidth={1.5} />
+          <MapPin size={20} strokeWidth={1.5} />
           <span className="text-xs tracking-wide">Entre Ríos, Argentina</span>
         </motion.div>
 
-        {/* ── Social Links ─────────────────────── */}
-        <motion.div variants={fadeUp} className="flex gap-3">
-          {socialLinks.map(({ label, href, icon: Icon }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="group flex items-center gap-2 rounded-full border border-zinc-800 px-5 py-2.5 text-sm text-zinc-400 transition-all duration-300 hover:border-zinc-600 hover:text-white"
-            >
-              <Icon
-                size={16}
-                strokeWidth={1.5}
-                className="transition-transform duration-300 group-hover:scale-110"
-              />
-              <span>{label}</span>
-            </a>
-          ))}
+        {/* ── Action & Social Links ─────────────────────── */}
+        <motion.div
+          variants={fadeUp}
+          className="flex flex-wrap justify-center gap-3"
+        >
+          <a
+            href="/CV-Analista de Sistemas-Olmos, Juan Emanuel.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Descargar CV"
+            className="group flex items-center gap-2 rounded-full border-2 border-zinc-800 px-5 py-2.5 text-sm text-zinc-100 transition-all duration-300 hover:border-zinc-600 hover:text-white"
+          >
+            <Eye
+              size={16}
+              strokeWidth={1.5}
+              className="transition-transform duration-300 group-hover:scale-110"
+            />
+            <span>Ver CV</span>
+          </a>
+          <a
+            href="https://github.com/JuanOlmos43"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="group flex items-center gap-2 rounded-full border-2 border-zinc-800 px-5 py-2.5 text-sm text-zinc-100 transition-all duration-300 hover:border-zinc-600 hover:text-white"
+          >
+            <Github
+              size={16}
+              strokeWidth={1.5}
+              className="transition-transform duration-300 group-hover:scale-110"
+            />
+            <span>GitHub</span>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/juan-emanuel-olmos-69b55a399"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="group flex items-center gap-2 rounded-full border-2 border-zinc-800 px-5 py-2.5 text-sm text-zinc-100 transition-all duration-300 hover:border-zinc-600 hover:text-white"
+          >
+            <Linkedin
+              size={16}
+              strokeWidth={1.5}
+              className="transition-transform duration-300 group-hover:scale-110"
+            />
+            <span>LinkedIn</span>
+          </a>
         </motion.div>
 
         {/* ── Scroll Indicator ─────────────────── */}
