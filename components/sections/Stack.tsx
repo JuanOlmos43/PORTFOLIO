@@ -24,7 +24,7 @@ const container: Variants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.08,
+      staggerChildren: 0.15,
     },
   },
 };
@@ -35,7 +35,7 @@ const fadeUp: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.8,
       ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
@@ -77,14 +77,14 @@ const complementaryTech: TechItem[] = [
 function TechCard({ name, icon: Icon }: TechItem) {
   return (
     <motion.div variants={fadeUp}>
-      <div className="group flex flex-col items-center gap-3 rounded-xl border border-zinc-800/50 bg-zinc-900/30 px-6 py-5 transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-900/60">
+      <div className="group flex flex-col items-center gap-3 rounded-xl border border-zinc-600 bg-zinc-800 px-6 py-5 transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-800">
         <Icon
           width={22}
           height={22}
           strokeWidth={1.5}
           className="text-zinc-400 transition-colors duration-300 group-hover:text-white"
         />
-        <span className="text-xs font-medium tracking-wide text-zinc-500 transition-colors duration-300 group-hover:text-zinc-300">
+        <span className="text-xs font-medium tracking-wide text-zinc-400 transition-colors duration-300 group-hover:text-zinc-300">
           {name}
         </span>
       </div>
@@ -101,7 +101,7 @@ function TechGroup({ label, items }: { label: string; items: TechItem[] }) {
     <div className="space-y-6">
       <motion.p
         variants={fadeUp}
-        className="text-xs font-medium uppercase tracking-widest text-zinc-600"
+        className="text-xs font-medium uppercase tracking-widest text-zinc-400"
       >
         {label}
       </motion.p>
@@ -120,7 +120,7 @@ function TechGroup({ label, items }: { label: string; items: TechItem[] }) {
 
 export default function Stack() {
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -60% 0px" });
 
   return (
     <section ref={ref} id="stack" className="py-16" aria-label="Tech Stack">
@@ -135,7 +135,7 @@ export default function Stack() {
           <h2 className="text-2xl font-semibold tracking-tight text-white">
             Stack
           </h2>
-          <p className="text-sm text-zinc-500">
+          <p className="text-sm text-zinc-400">
             Tecnologías con las que trabajo.
           </p>
         </motion.div>

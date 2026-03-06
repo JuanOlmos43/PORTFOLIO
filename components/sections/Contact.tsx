@@ -12,7 +12,7 @@ const container: Variants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.12,
+      staggerChildren: 0.2,
     },
   },
 };
@@ -23,7 +23,7 @@ const fadeUp: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.8,
       ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
@@ -92,7 +92,7 @@ function FormField({
     <div className="space-y-2">
       <label
         htmlFor={id}
-        className="block text-xs font-medium uppercase tracking-widest text-zinc-500"
+        className="block text-xs font-medium uppercase tracking-widest text-zinc-400"
       >
         {label}
       </label>
@@ -113,7 +113,10 @@ function FormField({
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const isInView = useInView(sectionRef, {
+    once: true,
+    margin: "0px 0px -60% 0px",
+  });
 
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -124,7 +127,7 @@ export default function Contact() {
   const [status, setStatus] = useState<FormStatus>("idle");
 
   const inputStyles =
-    "w-full rounded-lg border border-zinc-800 bg-zinc-900/40 px-4 py-3 text-sm text-white placeholder:text-zinc-600 transition-colors duration-300 focus:border-zinc-600 focus:outline-none";
+    "w-full rounded-lg border border-zinc-600 bg-zinc-800 px-4 py-3 text-sm text-white placeholder:text-zinc-600 transition-colors duration-300 focus:border-zinc-600 focus:outline-none";
 
   function handleChange(field: keyof FormData, value: string) {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -173,8 +176,8 @@ export default function Contact() {
           <h2 className="text-2xl font-semibold tracking-tight text-white">
             Contacto
           </h2>
-          <p className="text-sm text-zinc-500">
-            ¿Tenés un proyecto o una idea? Escribime.
+          <p className="text-sm text-zinc-400">
+            Escribime y te contactaré lo antes posible.
           </p>
         </motion.div>
 
@@ -228,7 +231,7 @@ export default function Contact() {
           <button
             type="submit"
             disabled={status === "sending" || status === "sent"}
-            className="group flex items-center gap-2 rounded-full border border-zinc-800 px-6 py-2.5 text-sm text-zinc-400 transition-all duration-300 hover:border-zinc-600 hover:text-white disabled:pointer-events-none disabled:opacity-50"
+            className="group flex items-center gap-2 rounded-full border border-zinc-600 px-6 py-2.5 text-sm text-zinc-400 transition-all hover:border-zinc-600 hover:bg-zinc-800 hover:text-white disabled:pointer-events-none disabled:opacity-50"
           >
             {status === "sending" && (
               <>
@@ -251,7 +254,7 @@ export default function Contact() {
                 <Send
                   size={16}
                   strokeWidth={1.5}
-                  className="transition-transform duration-300 group-hover:translate-x-0.5"
+                  className="transition-transform duration-300"
                 />
                 <span>Enviar mensaje</span>
               </>

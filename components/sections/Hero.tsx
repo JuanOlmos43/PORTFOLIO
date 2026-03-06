@@ -2,53 +2,59 @@
 
 import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
-import { Github, Linkedin, MapPin, ArrowDown, Eye } from "lucide-react";
+import { Github, Linkedin, MapPin, Eye, Code2 } from "lucide-react";
 
 /* ──────────────────────────────────────────────
    Animation Variants
    ────────────────────────────────────────────── */
 
-const container: Variants = {
-  hidden: {},
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
   visible: {
+    opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.25,
+      delayChildren: 0.2,
     },
   },
 };
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      duration: 0.9,
+      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
     },
   },
 };
 
-/* ──────────────────────────────────────────────
-   Hero Section
-   ────────────────────────────────────────────── */
-
 export default function Hero() {
+  const handleClickProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const element = document.getElementById("projects");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       id="hero"
-      className="flex min-h-screen flex-col items-center justify-center text-center"
+      className="min-h-screen -mt-32 flex flex-col items-center justify-center text-center relative"
       aria-label="Hero"
     >
       <motion.div
-        variants={container}
+        variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="flex flex-col items-center gap-8"
+        className="flex flex-col items-center"
       >
-        {/* ── Profile Image ────────────────────── */}
-        <motion.div variants={fadeUp}>
-          <div className="relative h-28 w-28 overflow-hidden rounded-full ring-1 ring-white/10">
+        {/* Foto circular */}
+        <motion.div variants={itemVariants} className="mb-8">
+          <div className="relative w-28 h-28 rounded-full overflow-hidden border border-zinc-600 shadow-[0_0_15px_rgba(255,255,255,0.05)] bg-zinc-800">
             <Image
               src="/profile.png"
               alt="Juan Emanuel Olmos"
@@ -59,68 +65,63 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* ── Name ─────────────────────────────── */}
-        <motion.div variants={fadeUp} className="space-y-3">
-          <h1 className="text-5xl font-semibold tracking-tight text-white sm:text-6xl">
+        {/* Nombres y Títulos */}
+        <motion.div variants={itemVariants} className="space-y-4 mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white">
             Juan Emanuel Olmos
           </h1>
-          <p className="text-lg font-light tracking-wide text-zinc-400">
-            Técnico Analista de Sistemas - Licenciatura en Sistemas de Información en formación
-          </p>
+          <h2 className="text-xl md:text-2xl font-light text-zinc-300 tracking-wide">
+            <span className="text-base md:text-lg text-zinc-500">próximo</span>{" "}
+            Técnico Analista de Sistemas
+          </h2>
+          <h3 className="text-sm md:text-base font-mono uppercase tracking-wider text-zinc-400">
+            Licenciatura en Sistemas de Información en formación
+          </h3>
         </motion.div>
 
-        {/* ── Description ──────────────────────── */}
-        <motion.div variants={fadeUp} className="max-w-lg space-y-1">
-          <p className="text-sm leading-relaxed text-zinc-500">
-            Estudiante avanzado de la Licenciatura en Sistemas de Información.
-          </p>
-          <p className="text-sm leading-relaxed text-zinc-500">
-            Formación en análisis funcional, modelado de datos y desarrollo web.
-          </p>
-          <p className="text-sm leading-relaxed text-zinc-500">
-            Enfoque estructurado y resolución lógica de problemas.
-          </p>
-        </motion.div>
-
-        {/* ── Location ─────────────────────────── */}
-        <motion.div
-          variants={fadeUp}
-          className="flex items-center gap-1.5 text-zinc-400"
+        {/* Descripción */}
+        <motion.p
+          variants={itemVariants}
+          className="max-w-lg text-lg text-zinc-400 font-light leading-relaxed mb-8 px-4"
         >
-          <MapPin size={20} strokeWidth={1.5} />
-          <span className="text-xs tracking-wide">Entre Ríos, Argentina</span>
+          Analizo, modelo y desarrollo soluciones web con enfoque estructurado.
+        </motion.p>
+
+        {/* Ubicación */}
+        <motion.div
+          variants={itemVariants}
+          className="flex items-center gap-2 text-zinc-400 mb-12"
+        >
+          <MapPin size={16} className="text-zinc-400" />
+          <span className="text-sm tracking-wide">Entre Ríos, Argentina</span>
         </motion.div>
 
-        {/* ── Action & Social Links ─────────────────────── */}
+        {/* Botones de Acción */}
         <motion.div
-          variants={fadeUp}
-          className="flex flex-wrap justify-center gap-3"
+          variants={itemVariants}
+          className="flex flex-wrap justify-center items-center gap-4"
         >
           <a
             href="/CV-Analista de Sistemas-Olmos, Juan Emanuel.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Descargar CV"
-            className="group flex items-center gap-2 rounded-full border-2 border-zinc-800 px-5 py-2.5 text-sm text-zinc-100 transition-all duration-300 hover:border-zinc-600 hover:text-white"
+            aria-label="Ver CV"
+            className="group flex items-center gap-2.5 px-6 py-2.5 border-2 border-white bg-white text-black rounded-full font-medium text-sm transition-all hover:bg-transparent hover:text-white hover:border-white"
           >
-            <Eye
-              size={16}
-              strokeWidth={1.5}
-              className="transition-transform duration-300 group-hover:scale-110"
-            />
+            <Eye size={16} />
             <span>Ver CV</span>
           </a>
+
           <a
             href="https://github.com/JuanOlmos43"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="group flex items-center gap-2 rounded-full border-2 border-zinc-800 px-5 py-2.5 text-sm text-zinc-100 transition-all duration-300 hover:border-zinc-600 hover:text-white"
+            className="group flex items-center gap-2.5 px-6 py-2.5 border-2 border-zinc-600 bg-transparent text-white rounded-full font-medium text-sm transition-all hover:border-zinc-600 hover:bg-zinc-800"
           >
             <Github
               size={16}
-              strokeWidth={1.5}
-              className="transition-transform duration-300 group-hover:scale-110"
+              className="text-zinc-400 group-hover:text-white transition-colors"
             />
             <span>GitHub</span>
           </a>
@@ -130,32 +131,27 @@ export default function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="group flex items-center gap-2 rounded-full border-2 border-zinc-800 px-5 py-2.5 text-sm text-zinc-100 transition-all duration-300 hover:border-zinc-600 hover:text-white"
+            className="group flex items-center gap-2.5 px-6 py-2.5 border-2 border-zinc-600 bg-transparent text-white rounded-full font-medium text-sm transition-all hover:border-zinc-600 hover:bg-zinc-800"
           >
             <Linkedin
               size={16}
-              strokeWidth={1.5}
-              className="transition-transform duration-300 group-hover:scale-110"
+              className="text-zinc-400 group-hover:text-white transition-colors"
             />
             <span>LinkedIn</span>
           </a>
-        </motion.div>
 
-        {/* ── Scroll Indicator ─────────────────── */}
-        <motion.div variants={fadeUp} className="pt-12">
-          <motion.a
-            href="#about"
-            aria-label="Scroll to About section"
-            className="text-zinc-700 transition-colors duration-300 hover:text-zinc-400"
-            animate={{ y: [0, 6, 0] }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+          <a
+            href="#projects"
+            onClick={handleClickProjects}
+            aria-label="Ver proyectos"
+            className="group flex items-center gap-2.5 px-6 py-2.5 border-2 border-zinc-600 bg-transparent text-white rounded-full font-medium text-sm transition-all hover:border-zinc-600 hover:bg-zinc-800"
           >
-            <ArrowDown size={20} strokeWidth={1.5} />
-          </motion.a>
+            <Code2
+              size={16}
+              className="text-zinc-400 group-hover:text-white transition-colors"
+            />
+            <span>Ver proyectos</span>
+          </a>
         </motion.div>
       </motion.div>
     </section>
