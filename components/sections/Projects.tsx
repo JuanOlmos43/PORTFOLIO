@@ -273,9 +273,9 @@ function ProjectCard({
         </div>
 
         {/* Botones/Links de acción minimalistas */}
-        <div className="pt-4 mt-2 flex items-center justify-between border-t border-zinc-600">
-          <div className="flex gap-4">
-            {project.githubUrl && (
+        {project.githubUrl && (
+          <div className="pt-4 mt-2 flex items-center justify-between border-t border-zinc-600">
+            <div className="flex gap-4">
               <a
                 href={project.githubUrl}
                 target="_blank"
@@ -286,23 +286,9 @@ function ProjectCard({
                 <Github size={16} />
                 <span>Código</span>
               </a>
-            )}
+            </div>
           </div>
-
-          {project.images && project.images.length > 0 && (
-            <button
-              onClick={onOpenModal}
-              className="flex items-center gap-2 text-sm font-medium text-white hover:text-zinc-300 transition-colors group/btn"
-              aria-label={`Ver galería de ${project.title}`}
-            >
-              <Eye
-                size={15}
-                className="text-white group-hover/btn:text-zinc-400 transition-colors"
-              />
-              <span>Ver galería</span>
-            </button>
-          )}
-        </div>
+        )}
       </div>
     </div>
   );

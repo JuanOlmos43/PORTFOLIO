@@ -1,20 +1,20 @@
 "use client";
 
-import { useRef, type ComponentType, type SVGProps } from "react";
+import { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
+import { IconType } from "react-icons";
 import {
-  Atom,
-  Triangle,
-  Braces,
-  Box,
-  Hexagon,
-  Database,
-  Zap,
-  GitBranch,
-  Github,
-  Hash,
-  type LucideProps,
-} from "lucide-react";
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiNestjs,
+  SiPrisma,
+  SiSupabase,
+  SiGit,
+  SiGithub,
+} from "react-icons/si";
+import { DiMsqlServer } from "react-icons/di";
+import { TbBrandCSharp } from "react-icons/tb";
 
 /* ──────────────────────────────────────────────
    Animation Variants
@@ -47,7 +47,9 @@ const fadeUp: Variants = {
 
 interface TechItem {
   name: string;
-  icon: ComponentType<LucideProps> | ComponentType<SVGProps<SVGSVGElement>>;
+  icon: IconType;
+  hoverColor?: string;
+  hoverBorder?: string;
 }
 
 /* ──────────────────────────────────────────────
@@ -55,36 +57,88 @@ interface TechItem {
    ────────────────────────────────────────────── */
 
 const mainTech: TechItem[] = [
-  { name: "React", icon: Atom },
-  { name: "Next.js", icon: Triangle },
-  { name: "TypeScript", icon: Braces },
-  { name: "Nest.js", icon: Box },
-  { name: "Prisma", icon: Hexagon },
+  {
+    name: "React",
+    icon: SiReact,
+    hoverColor: "group-hover:text-[#61DAFB]",
+    hoverBorder: "hover:border-[#61DAFB]",
+  },
+  {
+    name: "Next.js",
+    icon: SiNextdotjs,
+    hoverColor: "group-hover:text-white",
+    hoverBorder: "hover:border-white",
+  },
+  {
+    name: "TypeScript",
+    icon: SiTypescript,
+    hoverColor: "group-hover:text-[#3178C6]",
+    hoverBorder: "hover:border-[#3178C6]",
+  },
+  {
+    name: "Nest.js",
+    icon: SiNestjs,
+    hoverColor: "group-hover:text-[#E0234E]",
+    hoverBorder: "hover:border-[#E0234E]",
+  },
+  {
+    name: "Prisma",
+    icon: SiPrisma,
+    hoverColor: "group-hover:text-white",
+    hoverBorder: "hover:border-white",
+  },
 ];
 
 const complementaryTech: TechItem[] = [
-  { name: "SQL Server", icon: Database },
-  { name: "Supabase", icon: Zap },
-  { name: "Git", icon: GitBranch },
-  { name: "GitHub", icon: Github },
-  { name: "C#", icon: Hash },
+  {
+    name: "SQL Server",
+    icon: DiMsqlServer,
+    hoverColor: "group-hover:text-[#CC292B]",
+    hoverBorder: "hover:border-[#CC292B]",
+  },
+  {
+    name: "Supabase",
+    icon: SiSupabase,
+    hoverColor: "group-hover:text-[#3ECF8E]",
+    hoverBorder: "hover:border-[#3ECF8E]",
+  },
+  {
+    name: "Git",
+    icon: SiGit,
+    hoverColor: "group-hover:text-[#F05032]",
+    hoverBorder: "hover:border-[#F05032]",
+  },
+  {
+    name: "GitHub",
+    icon: SiGithub,
+    hoverColor: "group-hover:text-white",
+    hoverBorder: "hover:border-white",
+  },
+  {
+    name: "C#",
+    icon: TbBrandCSharp,
+    hoverColor: "group-hover:text-[#68217A]",
+    hoverBorder: "hover:border-[#68217A]",
+  },
 ];
 
 /* ──────────────────────────────────────────────
    Tech Card Component
    ────────────────────────────────────────────── */
 
-function TechCard({ name, icon: Icon }: TechItem) {
+function TechCard({ name, icon: Icon, hoverColor, hoverBorder }: TechItem) {
   return (
     <motion.div variants={fadeUp}>
-      <div className="group flex flex-col items-center gap-3 rounded-xl border border-zinc-600 bg-zinc-800 px-6 py-5 transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-800">
+      <div
+        className={`group flex flex-col items-center gap-3 rounded-xl border border-zinc-600 bg-zinc-800 px-6 py-5 transition-all duration-300 ${hoverBorder || "hover:border-zinc-700"} hover:bg-zinc-800`}
+      >
         <Icon
-          width={22}
-          height={22}
-          strokeWidth={1.5}
-          className="text-zinc-400 transition-colors duration-300 group-hover:text-white"
+          size={32}
+          className={`text-zinc-400 transition-colors duration-300 ${hoverColor || "group-hover:text-white"}`}
         />
-        <span className="text-xs font-medium tracking-wide text-zinc-400 transition-colors duration-300 group-hover:text-zinc-300">
+        <span
+          className={`text-xs font-medium tracking-wide text-zinc-400 transition-colors duration-300 ${hoverColor || "group-hover:text-zinc-300"}`}
+        >
           {name}
         </span>
       </div>
