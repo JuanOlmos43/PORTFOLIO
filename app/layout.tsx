@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SideNav } from "@/components/layout/SideNav";
 import { Footer } from "@/components/layout/Footer";
+import { Analytics } from "@vercel/analytics/next"
 
 /* ──────────────────────────────────────────────
    Fonts
@@ -70,6 +71,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <Analytics />
       <body className="bg-black text-white antialiased">
         <SideNav />
         <main className="mx-auto max-w-4xl px-6 pt-32 pb-16 flex flex-col gap-y-32">
