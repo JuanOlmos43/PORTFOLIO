@@ -1,80 +1,14 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useInView,
-  type Variants,
-} from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { Github, X, ChevronLeft, ChevronRight, Eye } from "lucide-react";
 
-/* ──────────────────────────────────────────────
-   Types & Data
-   ────────────────────────────────────────────── */
-
-interface Project {
-  title: string;
-  description: string;
-  tech: string[];
-  image: string;
-  images?: string[];
-  githubUrl?: string;
-}
-
-const PROJECTS: Project[] = [
-  {
-    title: "Sistema Web para Inmobiliaria",
-    description:
-      "Solución integral que resuelve la gestión de propiedades y clientes. Estructura el flujo de ventas y alquileres mediante perfiles de usuario, optimizando los tiempos y visibilidad de la información.",
-    tech: ["React", "Next.js", "Nest.js", "Prisma"],
-    image: "/projects/inmohogar-1.png",
-    images: [
-      "/projects/inmohogar-1.png",
-      "/projects/inmohogar-2.png",
-      "/projects/inmohogar-3.png",
-      "/projects/inmohogar-4.png",
-      "/projects/inmohogar-5.png",
-      "/projects/inmohogar-6.png",
-      "/projects/inmohogar-7.png",
-    ],
-    githubUrl: "https://github.com/JuanOlmos43", // Mock link
-  },
-  {
-    title: "Sistema de Generación de Recibos",
-    description:
-      "Aplicación de escritorio enfocada en automatizar y dar formato formal a la emisión y guardado de recibos de pago. Elimina errores manuales y agiliza el registro administrativo.",
-    tech: ["C#"],
-    image: "/projects/app-recibo.png",
-    images: ["/projects/app-recibo.png", "/projects/recibo.png"],
-  },
-];
-
-/* ──────────────────────────────────────────────
-   Animation Variants
-   ────────────────────────────────────────────── */
-
-const container: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.25,
-    },
-  },
-};
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.25, 0.46, 0.45, 0.94],
-    },
-  },
-};
+import { PROJECTS, type Project } from "@/data/projects";
+import { staggerContainer, fadeUp } from "@/lib/animations";
+import { useAnimatedSection } from "@/hooks/useAnimatedSection";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 /* ──────────────────────────────────────────────
    Component
@@ -84,8 +18,7 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "0px 0px -60% 0px" });
+  const { ref, isInView } = useAnimatedSection();
 
   // Prevenir scroll en body cuando el modal está abierto
   useEffect(() => {
@@ -102,23 +35,19 @@ export default function Projects() {
   return (
     <section ref={ref} id="projects" className="py-24" aria-label="Proyectos">
       <motion.div
-        variants={container}
+        variants={staggerContainer}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         className="max-w-4xl mx-auto"
       >
-        <motion.div variants={fadeUp} className="space-y-3 mb-12">
-          <h2 className="text-2xl font-semibold tracking-tight text-white">
-            Proyectos
-          </h2>
-          <p className="text-sm text-zinc-400">
-            Algunos de mis proyectos más destacados.
-          </p>
-        </motion.div>
+        <SectionHeader
+          title="Proyectos"
+          subtitle="Algunos de mis proyectos más destacados."
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {PROJECTS.map((project, idx) => (
-            <motion.div key={idx} variants={fadeUp}>
+          {PROJECTS.map((project) => (
+            <motion.div key={project.title} variants={fadeUp}>
               <ProjectCard
                 project={project}
                 onOpenModal={() => {
@@ -166,8 +95,7 @@ export default function Projects() {
                     alt={`${selectedProject.title} ${currentImageIndex + 1}`}
                     fill
                     className="object-contain"
-                    quality={100}
-                    unoptimized
+                    sizes="(max-width: 768px) 100vw, 1400px"
                   />
                   {selectedProject.images.length > 1 && (
                     <>
@@ -222,7 +150,7 @@ function ProjectCard({
   onOpenModal: () => void;
 }) {
   return (
-    <div className="group flex flex-col h-full overflow-hidden rounded-xl border border-zinc-600 bg-zinc-900 transition-all duration-300 hover:border-zinc-600">
+    <div className="group flex flex-col h-full overflow-hidden rounded-xl border border-zinc-600 bg-zinc-900 transition-all duration-300 hover:border-zinc-500">
       {/* Media Box */}
       <div
         className={`relative aspect-video overflow-hidden bg-zinc-800 border-b border-zinc-600 ${
@@ -236,6 +164,7 @@ function ProjectCard({
           src={project.image}
           alt={project.title}
           fill
+          sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { Github, Linkedin, Mail } from "lucide-react";
+import { PERSONAL } from "@/data/personal";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -18,18 +19,19 @@ export function Footer() {
       <div className="max-w-5xl w-full px-6 flex flex-col items-center gap-8">
         {/* Name and Title */}
         <div className="text-center space-y-3">
-          <h2 className="text-2xl font-semibold tracking-tight text-white mb-1">
-            Juan Emanuel Olmos
-          </h2>
+          <p className="text-2xl font-semibold tracking-tight text-white mb-1">
+            {PERSONAL.name}
+          </p>
           <p className="text-sm md:text-base font-light text-zinc-400">
-            Técnico Analista de Sistemas
+            <span className="text-base md:text-base text-zinc-500">próximo</span>{" "}
+            {PERSONAL.title}
           </p>
         </div>
 
         {/* Social Links */}
         <div className="flex gap-5 items-center">
           <a
-            href="https://github.com/JuanOlmos43"
+            href={PERSONAL.github}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
@@ -41,7 +43,7 @@ export function Footer() {
             />
           </a>
           <a
-            href="https://www.linkedin.com/in/juan-emanuel-olmos-69b55a399/"
+            href={PERSONAL.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
@@ -68,7 +70,7 @@ export function Footer() {
         {/* Bottom text */}
         <div className="flex flex-col items-center gap-3 mt-8 pt-8 border-t border-zinc-800/60 w-full sm:w-2/3">
           <p className="text-sm font-light tracking-wide text-zinc-400 text-center">
-            © {currentYear} Juan Emanuel Olmos. Todos los derechos reservados.
+            © {currentYear} {PERSONAL.name}. Todos los derechos reservados.
           </p>
           <p className="text-xs font-light text-zinc-500 text-center">
             Desarrollado con Next.js, Tailwind CSS y Framer Motion

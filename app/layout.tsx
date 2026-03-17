@@ -22,25 +22,40 @@ const geistMono = Geist_Mono({
    Metadata
    ────────────────────────────────────────────── */
 
+const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : "http://localhost:3000";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tudominio.com"),
-  title: "Portfolio — Juan Olmos",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Juan Emanuel Olmos — Analista de Sistemas",
+    template: "%s | Juan Emanuel Olmos",
+  },
   description:
-    "Frontend developer portfolio. Built with Next.js, TypeScript, and Tailwind CSS.",
-  keywords: ["portfolio", "frontend", "developer", "next.js", "react"],
-  authors: [{ name: "Juan Olmos" }],
+    "Portfolio de Juan Emanuel Olmos. Analista de Sistemas en formación, especializado en React, Next.js y TypeScript. Entre Ríos, Argentina.",
+  keywords: [
+    "analista de sistemas",
+    "desarrollador web",
+    "react",
+    "next.js",
+    "typescript",
+    "portfolio",
+    "argentina",
+  ],
+  authors: [{ name: "Juan Emanuel Olmos" }],
   openGraph: {
-    title: "Portfolio — Juan Olmos",
+    title: "Juan Emanuel Olmos — Analista de Sistemas",
     description:
-      "Frontend developer portfolio. Built with Next.js, TypeScript, and Tailwind CSS.",
+      "Portfolio profesional. Analista de Sistemas especializado en React, Next.js y TypeScript.",
     type: "website",
     locale: "es_AR",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Portfolio — Juan Olmos",
+    title: "Juan Emanuel Olmos — Analista de Sistemas",
     description:
-      "Frontend developer portfolio. Built with Next.js, TypeScript, and Tailwind CSS.",
+      "Portfolio profesional. Analista de Sistemas especializado en React, Next.js y TypeScript.",
   },
 };
 

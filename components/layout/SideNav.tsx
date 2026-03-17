@@ -1,15 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-
-const SECTIONS = [
-  { id: "hero", label: "Inicio" },
-  { id: "about", label: "Sobre mí" },
-  { id: "stack", label: "Stack" },
-  { id: "projects", label: "Proyectos" },
-  { id: "education", label: "Educación" },
-  { id: "contact", label: "Contacto" },
-];
+import { SECTIONS } from "@/data/navigation";
 
 export function SideNav() {
   const [activeSection, setActiveSection] = useState<string>("hero");

@@ -1,33 +1,11 @@
 "use client";
 
-import { useRef, useState, type FormEvent } from "react";
-import { motion, useInView, type Variants } from "framer-motion";
+import { useState, type FormEvent } from "react";
+import { motion } from "framer-motion";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
-
-/* ──────────────────────────────────────────────
-   Animation Variants
-   ────────────────────────────────────────────── */
-
-const container: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.25, 0.46, 0.45, 0.94],
-    },
-  },
-};
+import { staggerContainer, fadeUp } from "@/lib/animations";
+import { useAnimatedSection } from "@/hooks/useAnimatedSection";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 /* ──────────────────────────────────────────────
    Types
@@ -112,11 +90,7 @@ function FormField({
    ────────────────────────────────────────────── */
 
 export default function Contact() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const isInView = useInView(sectionRef, {
-    once: true,
-    margin: "0px 0px -60% 0px",
-  });
+  const { ref, isInView } = useAnimatedSection();
 
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -127,7 +101,7 @@ export default function Contact() {
   const [status, setStatus] = useState<FormStatus>("idle");
 
   const inputStyles =
-    "w-full rounded-lg border border-zinc-600 bg-zinc-800 px-4 py-3 text-sm text-white placeholder:text-zinc-600 transition-colors duration-300 focus:border-zinc-600 focus:outline-none";
+    "w-full rounded-lg border border-zinc-600 bg-zinc-800 px-4 py-3 text-sm text-white placeholder:text-zinc-600 transition-colors duration-300 focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 focus:outline-none";
 
   function handleChange(field: keyof FormData, value: string) {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -147,12 +121,24 @@ export default function Contact() {
 
     setStatus("sending");
 
-    // Simulate sending — replace with actual API call when backend is ready
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      setStatus("sent");
-      setFormData({ name: "", email: "", message: "" });
-      setErrors({});
+      const response = await fetch("https://formspree.io/f/xaqppaag", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+
+      if (response.ok) {
+        setStatus("sent");
+        setFormData({ name: "", email: "", message: "" });
+        setErrors({});
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }
@@ -160,26 +146,21 @@ export default function Contact() {
 
   return (
     <section
-      ref={sectionRef}
+      ref={ref}
       id="contact"
       className="py-16"
       aria-label="Contact"
     >
       <motion.div
-        variants={container}
+        variants={staggerContainer}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         className="space-y-16"
       >
-        {/* ── Section Header ───────────────────── */}
-        <motion.div variants={fadeUp} className="space-y-3">
-          <h2 className="text-2xl font-semibold tracking-tight text-white">
-            Contacto
-          </h2>
-          <p className="text-sm text-zinc-400">
-            Escribime y te contactaré lo antes posible.
-          </p>
-        </motion.div>
+        <SectionHeader
+          title="Contacto"
+          subtitle="Escribime y te contactaré lo antes posible."
+        />
 
         {/* ── Form ─────────────────────────────── */}
         <motion.form

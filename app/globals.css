@@ -9,7 +9,7 @@
   --color-bg: #000000;
   --color-text-primary: #ffffff;
   --color-text-secondary: #a1a1aa; /* zinc-400 */
-  --color-text-muted: #a1a1aa; /* zinc-500 */
+  --color-text-muted: #71717a; /* zinc-500 */
   --color-border: #52525b; /* zinc-800 */
   --color-surface: #0a0a0a;
 
@@ -72,4 +72,3 @@ body {
   background-color: var(--color-text-muted);
 }
 
-/* Force CSS recompilation */
