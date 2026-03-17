@@ -80,7 +80,10 @@ export default function Stack() {
         animate={isInView ? "visible" : "hidden"}
         className="space-y-16"
       >
-        <SectionHeader title="Stack" subtitle="Tecnologías con las que he trabajado." />
+        <SectionHeader
+          title="Stack"
+          subtitle="Tecnologías con las que he trabajado."
+        />
 
         {/* ── Tech Groups ──────────────────────── */}
         <div className="space-y-12">

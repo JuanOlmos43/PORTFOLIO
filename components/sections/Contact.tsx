@@ -145,12 +145,7 @@ export default function Contact() {
   }
 
   return (
-    <section
-      ref={ref}
-      id="contact"
-      className="py-16"
-      aria-label="Contact"
-    >
+    <section ref={ref} id="contact" className="py-16" aria-label="Contact">
       <motion.div
         variants={staggerContainer}
         initial="hidden"

@@ -29,10 +29,10 @@ export default function Education() {
           <motion.div
             variants={{
               hidden: { scaleY: 0 },
-              visible: { 
-                scaleY: 1, 
-                transition: { duration: 1.5, ease: "easeInOut" } 
-              }
+              visible: {
+                scaleY: 1,
+                transition: { duration: 1.5, ease: "easeInOut" },
+              },
             }}
             className="absolute left-[3px] top-2 bottom-2 w-px origin-top bg-zinc-800"
           />

@@ -23,7 +23,9 @@ export function Footer() {
             {PERSONAL.name}
           </p>
           <p className="text-sm md:text-base font-light text-zinc-400">
-            <span className="text-base md:text-base text-zinc-500">próximo</span>{" "}
+            <span className="text-base md:text-base text-zinc-500">
+              próximo
+            </span>{" "}
             {PERSONAL.title}
           </p>
         </div>

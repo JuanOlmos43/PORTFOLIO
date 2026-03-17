@@ -20,7 +20,10 @@ export default function About() {
         animate={isInView ? "visible" : "hidden"}
         className="space-y-16"
       >
-        <SectionHeader title="Sobre mí" subtitle="Perfil y enfoque profesional." />
+        <SectionHeader
+          title="Sobre mí"
+          subtitle="Perfil y enfoque profesional."
+        />
 
         {/* ── Content ──────────────────────────── */}
         <motion.div
