@@ -101,7 +101,7 @@ export default function Projects() {
                               : prev - 1,
                           );
                         }}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 hover:bg-black/80 text-white rounded-full backdrop-blur-md transition-colors opacity-0 group-hover/gallery:opacity-100 border border-white/10"
+                        className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 hover:bg-black/80 text-white rounded-full backdrop-blur-md transition-colors opacity-100 md:opacity-0 md:group-hover/gallery:opacity-100 border border-white/10"
                       >
                         <ChevronLeft size={24} />
                       </button>
@@ -114,7 +114,7 @@ export default function Projects() {
                               : prev + 1,
                           );
                         }}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 hover:bg-black/80 text-white rounded-full backdrop-blur-md transition-colors opacity-0 group-hover/gallery:opacity-100 border border-white/10"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/60 hover:bg-black/80 text-white rounded-full backdrop-blur-md transition-colors opacity-100 md:opacity-0 md:group-hover/gallery:opacity-100 border border-white/10"
                       >
                         <ChevronRight size={24} />
                       </button>
