@@ -1,9 +1,9 @@
 export const PERSONAL = {
   name: "Juan Emanuel Olmos",
   title: "Técnico Analista de Sistemas",
-  subtitle: "Licenciatura en Sistemas de Información en formación",
+  subtitle: "Licenciatura en Sistemas de Información",
   description:
-    "Analizo, modelo y desarrollo soluciones web con enfoque estructurado.",
+    "Diseño de procesos, modelado de datos y desarrollo de aplicaciones web con un enfoque lógico y estructurado",
   location: "Entre Ríos, Argentina",
   github: "https://github.com/JuanOlmos43",
   linkedin: "https://www.linkedin.com/in/juan-emanuel-olmos-69b55a399",

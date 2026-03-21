@@ -35,8 +35,8 @@ export default function About() {
             <strong className="font-medium text-white">
               análisis funcional
             </strong>{" "}
-            y al <strong className="font-medium text-white">modelado</strong>{" "}
-            preciso de sistemas. Mi enfoque se basa en la{" "}
+            y a la <strong className="font-medium text-white">construcción de software</strong>{" "}
+            que resuelva problemas reales. Mi enfoque se basa en la{" "}
             <strong className="font-medium text-white">
               resolución estructurada
             </strong>{" "}
@@ -46,7 +46,7 @@ export default function About() {
               trabajo en equipo
             </strong>{" "}
             como el pilar fundamental para construir productos digitales sólidos
-            e innovadores.
+            e innovadores. Disfruto aprendiendo nuevas tecnologías y aplicarlas en mis proyectos.
           </p>
         </motion.div>
       </motion.div>
