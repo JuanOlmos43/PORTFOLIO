@@ -3,7 +3,7 @@
 import { motion, type Variants } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
 import { useAnimatedSection } from "@/hooks/useAnimatedSection";
-import { mainTech, complementaryTech, type TechItem } from "@/data/stack";
+import { techGroups, type TechItem } from "@/data/stack";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 /* ──────────────────────────────────────────────
@@ -27,10 +27,10 @@ function TechCard({ name, icon: Icon, hoverColor, hoverBorder }: TechItem) {
   return (
     <motion.div variants={fadeUp}>
       <div
-        className={`group flex flex-col items-center gap-3 rounded-xl border border-zinc-600 bg-zinc-800 px-6 py-5 transition-all duration-300 ${hoverBorder || "hover:border-zinc-700"} hover:bg-zinc-800`}
+        className={`group flex flex-col items-center gap-2 rounded-xl border border-zinc-600 bg-zinc-800 px-4 py-4 transition-all duration-300 ${hoverBorder || "hover:border-zinc-700"} hover:bg-zinc-800`}
       >
         <Icon
-          size={32}
+          size={26}
           className={`text-zinc-400 transition-colors duration-300 ${hoverColor || "group-hover:text-white"}`}
         />
         <span
@@ -87,8 +87,9 @@ export default function Stack() {
 
         {/* ── Tech Groups ──────────────────────── */}
         <div className="space-y-12">
-          <TechGroup label="Principales" items={mainTech} />
-          <TechGroup label="Complementarias" items={complementaryTech} />
+          {techGroups.map((group) => (
+            <TechGroup key={group.label} label={group.label} items={group.items} />
+          ))}
         </div>
       </motion.div>
     </section>
