@@ -79,17 +79,9 @@ export default function Education() {
                 </p>
                 <p className="mt-0.5 text-xs text-zinc-400">UADER</p>
               </div>
-              <motion.span
-                animate={{ opacity: [1, 0.3, 1] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="shrink-0 rounded-full border border-white/30 px-3 py-1 text-xs font-medium uppercase tracking-wider text-white"
-              >
-                96% - Finalizando
-              </motion.span>
+              <span className="shrink-0 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium uppercase tracking-wider text-emerald-400">
+                Graduado
+              </span>
             </div>
           </motion.div>
 

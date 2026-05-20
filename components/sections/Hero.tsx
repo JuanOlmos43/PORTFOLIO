@@ -39,11 +39,12 @@ export default function Hero() {
             {PERSONAL.name}
           </h1>
           <h2 className="text-xl md:text-2xl font-light text-zinc-300 tracking-wide">
-            <span className="text-base md:text-lg text-zinc-500">próximo</span>{" "}
             {PERSONAL.title}
           </h2>
           <h3 className="text-sm md:text-base font-mono uppercase tracking-wider text-zinc-400">
-            <span className="text-base md:text-sm text-zinc-500">Estudiante avanzado de</span>{" "}
+            <span className="text-zinc-500 text-xs md:text-sm font-normal normal-case tracking-normal">
+              Estudiante avanzado de
+            </span>{" "}
             {PERSONAL.subtitle}
           </h3>
         </motion.div>
